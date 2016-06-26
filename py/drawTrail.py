@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
+import math
+
 plt.ion()
 class DynamicUpdate():
     #Suppose we know the x range
-    min_x = 0
-    max_x = 10
+    min_x = -100
+    max_x = 100
 
     def on_launch(self):
         #Set up plot
@@ -31,16 +33,57 @@ class DynamicUpdate():
     def __call__(self):
         import numpy as np
         import time
+
         self.on_launch()
+
+        f = open("test.txt")
+
+        line = f.readline()
+        line = line[0:-1]
+        acceleration = line.split(" ")
+        #print (acceleration)
+        line = f.readline()
+        line = line[0:-1]
+        angular = line.split(" ")
+        #print (angle)
+
+        xvelocity = []
+        yvelocity = []
+        xvelocity.append(10*float(acceleration[0]))
+        yvelocity.append(10*float(acceleration[1]))
+        #print (float(acceleration[0]), type(float(acceleration[0])))
+
+        angle = []
+        angle.append(float(angular[2]))
+
         xdata = []
         ydata = []
-        for x in np.arange(0,10,0.5):
-            xdata.append(x)
-            ydata.append(np.exp(-x**2)+10*np.exp(-(x-7)**2))
-            print(xdata, ydata)
+        xdata.append(0)
+        ydata.append(0)
+
+        while line:
+            #refresh xdata and ydata
+            xdatatmp = xdata[-1] + xvelocity[-1] * math.cos(angle[-1]/math.pi)
+            ydatatmp = ydata[-1] + yvelocity[-1] * math.sin(angle[-1]/math.pi)
+            xdata.append(xdatatmp)
+            ydata.append(ydatatmp)
+
             self.on_running(xdata, ydata)
-            time.sleep(1)
-        return xdata, ydata
+            time.sleep(0.5)
+
+            line = f.readline()
+            line = line[0:-1]
+            acceleration = line.split(" ")
+            line = f.readline()
+            line = line[0:-1]
+            angular = line.split(" ")
+
+            #refresh velocity / angle
+            xvelocity.append(xvelocity[-1]+10*float(acceleration[0]))
+            yvelocity.append(yvelocity[-1]+10*float(acceleration[1]))
+            angle.append(angle[-1]+float(angular[2]))
+            print (float(angular[2]))
+        #return xdata, ydata
 
 d = DynamicUpdate()
 d()
