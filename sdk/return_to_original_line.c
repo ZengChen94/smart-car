@@ -124,7 +124,7 @@ int main()
 				car_rotate_left();
 				count -= 1;
 				usleep(STANDARD_INTERVAL);
-				if(!( ult_data[2] >0&&ult_data[2] < 180))
+				if(!( ult_data[2] >0&&ult_data[2] < 270))
 				{
 					continue;
 				}
@@ -138,7 +138,7 @@ int main()
 				car_rotate_right();
 				count += 1;
 				usleep(STANDARD_INTERVAL);
-				if(!(ult_data[0] >0 &&ult_data[0] < 180) )
+				if(!(ult_data[0] >0 &&ult_data[0] < 270) )
 				{
 					continue;
 				}
@@ -151,7 +151,7 @@ int main()
 		}
 
 
-		if((ult_data[0] >0 &&ult_data[0] < 180) )
+		if((ult_data[0] >0 &&ult_data[0] < 270) )
 		{
 
 			// usleep(STANDARD_INTERVAL);
@@ -160,14 +160,14 @@ int main()
 			count -= 1;
 			usleep(STANDARD_INTERVAL);
 		}
-		else if( ult_data[2] >0&&ult_data[2] < 180 )
+		else if( ult_data[2] >0&&ult_data[2] < 270 )
 		{
 			// usleep(STANDARD_INTERVAL);
 			car_rotate_right();
 			count += 1;
 			usleep(STANDARD_INTERVAL);
 		}
-		else if((ult_data[1] >0 &&ult_data[1] < 180))
+		else if((ult_data[1] >0 &&ult_data[1] < 270))
 		{
 			car_rotate_right();
 			count += 1;
@@ -201,7 +201,7 @@ int main()
 									zrcar_ultra_get_all(ult_data);
 
 
-									if((ult_data[0] >0 &&ult_data[0] < 180)||(ult_data[2] >0 &&ult_data[2] < 180)||(ult_data[1] >0 &&ult_data[1] < 180))
+									if((ult_data[0] >0 &&ult_data[0] < 270)||(ult_data[2] >0 &&ult_data[2] < 270)||(ult_data[1] >0 &&ult_data[1] < 270))
 									{
 										car_rotate_right();
 										usleep(temp*STANDARD_INTERVAL);
@@ -227,7 +227,7 @@ int main()
 									// {
 									// 	break;
 									// }
-									if((ult_data[0] >0 &&ult_data[0] < 180)||(ult_data[2] >0 &&ult_data[2] < 180)||(ult_data[1] >0 &&ult_data[1] < 180))
+									if((ult_data[0] >0 &&ult_data[0] < 270)||(ult_data[2] >0 &&ult_data[2] < 270)||(ult_data[1] >0 &&ult_data[1] < 270))
 									{
 										car_rotate_left();
 										usleep((-temp)*STANDARD_INTERVAL);

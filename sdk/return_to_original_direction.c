@@ -32,6 +32,7 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
 #include "platform.h"
 #include "xparameters.h"
 #include "sleep.h"
@@ -45,40 +46,40 @@ void car_stop()
 }
 void car_forward()
 {
-	zrcar_wheel_l_set(-8);
-	zrcar_wheel_r_set(-8);
+	zrcar_wheel_l_set(8);
+	zrcar_wheel_r_set(8);
 }
 void car_back()
 {
-	zrcar_wheel_l_set(8);
-	zrcar_wheel_r_set(8);
+	zrcar_wheel_l_set(-8);
+	zrcar_wheel_r_set(-8);
 }
 void car_right()
 {
 	zrcar_wheel_l_set(0);
-	zrcar_wheel_r_set(8);
+	zrcar_wheel_r_set(-8);
 }
 void car_left()
 {
-	zrcar_wheel_l_set(8);
+	zrcar_wheel_l_set(-8);
 	zrcar_wheel_r_set(0);
 }
 void car_rotate_left()
 {
-	zrcar_wheel_l_set(8);
-	zrcar_wheel_r_set(-8);
+	zrcar_wheel_l_set(-8);
+	zrcar_wheel_r_set(8);
 }
 void car_rotate_right()
 {
-	zrcar_wheel_l_set(-8);
-	zrcar_wheel_r_set(8);
+	zrcar_wheel_l_set(8);
+	zrcar_wheel_r_set(-8);
 }
 
 int main()
 {
 	/*********init*******/
-	zrcar_wheel_init();
-	zrcar_ultra_init();
+	zrcar_wheel_init(ZRCAR_WHEEL_DEV);
+	zrcar_ultrasonic_init(ZRCAR_ULTRASONIC_DEV);
 
 	// Ultrasonic__value_all
 
